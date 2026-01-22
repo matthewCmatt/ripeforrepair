@@ -5,4 +5,14 @@ html {
     --color-mauve: #bd8296;
     --color-blue: #80aceb;
     --color-green: #5fbe7e;
+
+  font-family: 'Lambda', sans-serif;
+}
+
+@font-face {
+  font-family: 'Lambda';
+  src: url('/fonts/Lambda-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
