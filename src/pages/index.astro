@@ -15,19 +15,16 @@ import "../styles/global.css";
     <body>
         <header>
             <h1>Ripe for Repair</h1>
-            <h2></h2>
-            <hr />
+            <p>
+                A semi-regular hang to fix our broken things, learn new skills, teach each other stuff, and build community across social circles. Free & open to all.
+            </p>
+            <hr/>
         </header>
         <main>
-            <h2>Upcoming Meetups</h2>
-            <Events />
-            <hr />
-            <h2>About</h2>
-            <p>
-                A semi-regular hang to fix our broken things, learn new skills,
-                teach each other stuff, and build community across social
-                circles. Free & open to all.
-            </p>
+            <section>
+                <h2>Come to the next meetup!</h2>
+                <Events />
+            </section>
             <hr />
             <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLSdOFbw_gQTQ-KowqpO0Bj3j5NnX5BaefBx7X_5LCIH93fxqeg/viewform"
@@ -41,17 +38,15 @@ import "../styles/global.css";
             <hr />
             <h2>In the news</h2>
             <ul>
-                <a href="https://www.pressherald.com/2024/12/09/portland-repair-meetups-mend-items-knit-community/"
-                    >
-					<li>
-                        In The Forecaster
-                    </li>
+                <a
+                    href="https://www.pressherald.com/2024/12/09/portland-repair-meetups-mend-items-knit-community/"
+                >
+                    <li>In The Forecaster</li>
                 </a>
-				<a href="https://wgme.com/news/local/mainers-unite-to-fix-items-and-build-skills-at-ripe-to-repair-event-in-portland"
-                    >
-					<li>
-                        On TV (WGME)
-                    </li>
+                <a
+                    href="https://wgme.com/news/local/mainers-unite-to-fix-items-and-build-skills-at-ripe-to-repair-event-in-portland"
+                >
+                    <li>On TV (WGME)</li>
                 </a>
             </ul>
         </main>
@@ -63,9 +58,24 @@ import "../styles/global.css";
         padding: 1em;
         max-width: 80ch;
         margin: auto;
+        background-color: var(--color-green);
     }
 
     h1 {
         text-align: center;
+        padding: 0.5em 0;
+        font-weight: 400;
+        letter-spacing: -1px;
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        padding-top: 2em;
+    }
+
+    header > p {
+        font-size: 1.2em;
     }
 </style>
