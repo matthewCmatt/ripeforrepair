@@ -13,18 +13,21 @@ import "../styles/global.css";
         <title>Ripe for Repair</title>
     </head>
     <body>
-        <header>
-            <h1>Ripe for Repair</h1>
-            <p>
-                A semi-regular hang to fix our broken things, learn new skills, teach each other stuff, and build community across social circles. Free & open to all.
-            </p>
-            <hr/>
-        </header>
         <main>
-            <section>
-                <h2>Come to the next meetup!</h2>
-                <Events />
-            </section>
+            <header>
+                <h1>Ripe for Repair</h1>
+            </header>
+            <div class="side-by-side">
+                <p>
+                    A semi-regular hang to fix our broken things, learn new
+                    skills, teach each other stuff, and build community across
+                    social circles. Free & open to all.
+                </p>
+                <section>
+                    <h2>Come to the next meetup!</h2>
+                    <Events />
+                </section>
+            </div>
             <hr />
             <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLSdOFbw_gQTQ-KowqpO0Bj3j5NnX5BaefBx7X_5LCIH93fxqeg/viewform"
@@ -75,7 +78,19 @@ import "../styles/global.css";
         padding-top: 2em;
     }
 
-    header > p {
-        font-size: 1.2em;
+
+    .side-by-side {
+        display: grid;
+
+        p {
+            font-size: 1.2em;
+            margin: auto;
+        }
+    }
+
+    @media (width > 700px) {
+        .side-by-side {
+            grid-template-columns: 1fr 1fr;
+        }
     }
 </style>
