@@ -1,7 +1,7 @@
 # -------------------------
 # 1. Build Astro UI
 # -------------------------
-FROM node:25-alpine AS ui-builder
+FROM node:25-slim AS ui-builder
 
 WORKDIR /ui
 
