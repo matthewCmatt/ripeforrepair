@@ -1,12 +1,12 @@
 # -------------------------
 # 1. Build Astro UI
 # -------------------------
-FROM node:25-slim AS ui-builder
+FROM node:25-alpine AS ui-builder
 
 WORKDIR /ui
 
 # Enable pnpm
-RUN corepack enable
+RUN npm install -g pnpm
 
 # Install deps
 COPY ui/package.json ui/pnpm-lock.yaml ./
