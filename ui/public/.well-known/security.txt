@@ -1,0 +1,4 @@
+Contact: mailto:security@ripe4repair.org
+Expires: 2026-07-01T16:00:00.000Z
+Preferred-Languages: en
+Canonical: https://ripe4repair.org/.well-known/security.txt
