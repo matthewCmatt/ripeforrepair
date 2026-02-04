@@ -1,0 +1,20 @@
+---
+import Layout from "../../components/Layout.astro";
+import { pb } from "../../lib/pb";
+
+const events = await pb.collection("events").getFullList();
+---
+
+<Layout>
+    <ol>
+        {
+            events.map((e) => (
+                <a href={`/events/${e.url}`}>
+                    Event
+                    {e.content.name}
+                    {e.content.date}
+                </a>
+            ))
+        }
+    </ol>
+</Layout>

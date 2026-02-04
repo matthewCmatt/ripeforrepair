@@ -7,7 +7,9 @@
     let error: string | null = $state(null);
     let loading = $state(false);
 
-    async function handleLogin() {
+    async function handleLogin(e: Event) {
+        e.preventDefault();
+
         error = null;
         loading = true;
 
@@ -27,10 +29,7 @@
 </script>
 
 <form
-    onsubmit={async (e) => {
-        e.preventDefault();
-        await handleLogin();
-    }}
+    onsubmit={handleLogin}
 >
     <h2>Login</h2>
 
@@ -55,7 +54,6 @@
     <button
         type="submit"
         disabled={loading}
-        class="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
     >
         {#if loading}
             Logging in…

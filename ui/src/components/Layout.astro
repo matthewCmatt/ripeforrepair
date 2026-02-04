@@ -1,0 +1,57 @@
+---
+import "../styles/reset.css";
+import "../styles/global.css";
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title ? `${title} | ` : ""} Ripe for Repair</title>
+    </head>
+    <body>
+        <slot />
+    </body>
+</html>
+
+<style>
+    body {
+        padding: 1em;
+        max-width: 80ch;
+        margin: auto;
+        background-color: var(--color-green);
+    }
+
+    h1 {
+        text-align: center;
+        padding: 0.5em 0;
+        font-weight: 400;
+        letter-spacing: -1px;
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        padding-top: 2em;
+    }
+
+    .side-by-side {
+        display: grid;
+
+        p {
+            font-size: 1.2em;
+            margin: auto;
+        }
+    }
+
+    @media (width > 700px) {
+        .side-by-side {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+</style>

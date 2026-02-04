@@ -1,60 +1,58 @@
 ---
-import Events from "../components/Events.svelte";
-import "../styles/reset.css";
-import "../styles/global.css";
+import Layout from "../components/Layout.astro";
+import { pb } from "../lib/pb";
+
+const events = await pb.collection("events").getFullList();
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>Ripe for Repair</title>
-    </head>
-    <body>
-        <main>
-            <header>
-                <h1>Ripe for Repair</h1>
-            </header>
-            <div class="side-by-side">
-                <p>
-                    A semi-regular hang to fix our broken things, learn new
-                    skills, teach each other stuff, and build community across
-                    social circles. Free & open to all.
-                </p>
-                <section>
-                    <h2>Come to the next meetup!</h2>
-                    <Events />
-                </section>
-            </div>
-            <hr />
+<Layout>
+    <main>
+        <header>
+            <h1>Ripe for Repair</h1>
+        </header>
+        <div class="side-by-side">
+            <p>
+                A semi-regular hang to fix our broken things, learn new skills,
+                teach each other stuff, and build community across social
+                circles. Free & open to all.
+            </p>
+            <section>
+                <h2>Come to the next meetup!</h2>
+                {
+                    events.map((e) => (
+                        <a href={`/events/${e.url}`}>
+                            <li />
+                        </a>
+                    ))
+                }
+            </section>
+        </div>
+        <hr />
+        <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdOFbw_gQTQ-KowqpO0Bj3j5NnX5BaefBx7X_5LCIH93fxqeg/viewform"
+        >
+            <h2>Join the mailing list</h2>
+        </a>
+        <hr />
+        <a href="https://www.instagram.com/ripe_for_repair/">
+            <h2>Instagram</h2>
+        </a>
+        <hr />
+        <h2>In the news</h2>
+        <ul>
             <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdOFbw_gQTQ-KowqpO0Bj3j5NnX5BaefBx7X_5LCIH93fxqeg/viewform"
+                href="https://www.pressherald.com/2024/12/09/portland-repair-meetups-mend-items-knit-community/"
             >
-                <h2>Join the mailing list</h2>
+                <li>In The Forecaster</li>
             </a>
-            <hr />
-            <a href="https://www.instagram.com/ripe_for_repair/">
-                <h2>Instagram</h2>
+            <a
+                href="https://wgme.com/news/local/mainers-unite-to-fix-items-and-build-skills-at-ripe-to-repair-event-in-portland"
+            >
+                <li>On TV (WGME)</li>
             </a>
-            <hr />
-            <h2>In the news</h2>
-            <ul>
-                <a
-                    href="https://www.pressherald.com/2024/12/09/portland-repair-meetups-mend-items-knit-community/"
-                >
-                    <li>In The Forecaster</li>
-                </a>
-                <a
-                    href="https://wgme.com/news/local/mainers-unite-to-fix-items-and-build-skills-at-ripe-to-repair-event-in-portland"
-                >
-                    <li>On TV (WGME)</li>
-                </a>
-            </ul>
-        </main>
-    </body>
-</html>
+        </ul>
+    </main>
+</Layout>
 
 <style>
     body {
@@ -77,7 +75,6 @@ import "../styles/global.css";
         gap: 1em;
         padding-top: 2em;
     }
-
 
     .side-by-side {
         display: grid;
