@@ -10,9 +10,10 @@ const events = await pb.collection("events").getFullList();
         {
             events.map((e) => (
                 <a href={`/events/${e.url}`}>
-                    Event
-                    {e.content.name}
-                    {e.content.date}
+                    <li>
+                        Event
+                        {e.starttime}
+                    </li>
                 </a>
             ))
         }
