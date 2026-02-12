@@ -6,7 +6,7 @@ import { readItems } from '@directus/sdk';
 const events = await directus.request(readItems('events'));
 ---
 
-<Layout>
+<Layout title="Events">
     <ol>
         {
             events.map((e) => (
