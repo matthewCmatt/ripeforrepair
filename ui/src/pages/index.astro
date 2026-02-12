@@ -22,10 +22,15 @@ const events = await directus.request(readItems('events'));
                 {
                     events.map((e) => (
                         <a href={`/events/${e.id}`}>
-                            <li />
+                            <li>
+                                {e.name}
+                            </li>
                         </a>
                     ))
                 }
+                <a href="/events/">
+                    View all events
+                </a>
             </section>
         </div>
         <hr />

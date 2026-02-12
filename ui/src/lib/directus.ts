@@ -1,2 +1,14 @@
 import { createDirectus, rest } from '@directus/sdk';
-export const directus = createDirectus('https://admin.ripe4repair.org').with(rest());
+
+interface Event {
+  id: number;
+  name: string;
+  start_time: Date;
+  address: string;
+}
+
+interface Schema {
+  events: Event[];
+}
+
+export const directus = createDirectus<Schema>('https://admin.ripe4repair.org').with(rest());
