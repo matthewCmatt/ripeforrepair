@@ -11,6 +11,9 @@ importers:
       '@astrojs/svelte':
         specifier: ^7.2.5
         version: 7.2.5(astro@5.16.11(rollup@4.55.2)(typescript@5.9.3))(svelte@5.49.1)(typescript@5.9.3)
+      '@directus/sdk':
+        specifier: ^21.1.0
+        version: 21.1.0
       astro:
         specifier: ^5.16.11
         version: 5.16.11(rollup@4.55.2)(typescript@5.9.3)
@@ -71,6 +74,10 @@ packages:
   '@capsizecss/unpack@4.0.0':
     resolution: {integrity: sha512-VERIM64vtTP1C4mxQ5thVT9fK0apjPFobqybMtA1UdUujWka24ERHbRHFGmpbbhp73MhV+KSsHQH9C6uOTdEQA==}
     engines: {node: '>=18'}
+
+  '@directus/sdk@21.1.0':
+    resolution: {integrity: sha512-Ig8zZAQDbc7QMIM54N+x71C04lni9MN9yalNAezjDjFdNknTJzupDY7V5cb+kOJL8GsqDE9Bg8xq8xCmkDVs5A==}
+    engines: {node: '>=22'}
 
   '@emnapi/runtime@1.8.1':
     resolution: {integrity: sha512-mehfKSMWjjNol8659Z8KxEMrdSJDDot5SXMq00dM8BN4o+CLNXQ0xH2V7EchNHV4RmbZLmmPdEaXZc5H2FXmDg==}
@@ -1663,6 +1670,8 @@ snapshots:
   '@capsizecss/unpack@4.0.0':
     dependencies:
       fontkitten: 1.0.2
+
+  '@directus/sdk@21.1.0': {}
 
   '@emnapi/runtime@1.8.1':
     dependencies:

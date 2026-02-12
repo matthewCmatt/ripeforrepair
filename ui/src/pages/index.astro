@@ -1,8 +1,9 @@
 ---
 import Layout from "../components/Layout.astro";
-import { pb } from "../lib/pb";
+import { directus } from "../lib/directus"
+import { readItems } from '@directus/sdk';
 
-const events = await pb.collection("events").getFullList();
+const events = await directus.request(readItems('events'));
 ---
 
 <Layout>
@@ -20,7 +21,7 @@ const events = await pb.collection("events").getFullList();
                 <h2>Come to the next meetup!</h2>
                 {
                     events.map((e) => (
-                        <a href={`/events/${e.url}`}>
+                        <a href={`/events/${e.id}`}>
                             <li />
                         </a>
                     ))

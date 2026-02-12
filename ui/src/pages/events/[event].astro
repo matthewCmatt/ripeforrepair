@@ -1,17 +1,18 @@
 ---
 import Layout from "../../components/Layout.astro";
-import { pb } from "../../lib/pb";
+import { directus } from "../../lib/directus"
+import { readItems } from '@directus/sdk';
 
 export async function getStaticPaths() {
-    const records = await pb.collection("events").getFullList();
-    return records.map((r) => {
-        return { params: { event: r.url }, props: { content: r } };
+    const events = await directus.request(readItems('events'));
+    return events.map((r) => {
+        return { params: { event: r.id }, props: { content: r } };
     });
 }
 
-const { e } = Astro.props.content;
+const e = Astro.props.content;
 ---
 
 <Layout>
-    <div>This event is {e}!</div>
+    <div>This event is {e.id} {e.name} {e.start_time} {e.address}!</div>
 </Layout>
