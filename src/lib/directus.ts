@@ -3,8 +3,12 @@ import { createDirectus, rest } from "@directus/sdk";
 interface Event {
     id: number;
     name: string;
-    start_time: Date;
+    date: Date;
+    start_time: string;
+    end_time: string;
     address: string;
+    repairs_available: string[];
+    description: string;
 }
 
 interface EmailSignup {

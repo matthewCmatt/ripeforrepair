@@ -11,8 +11,49 @@ export async function getStaticPaths() {
 }
 
 const e = Astro.props.content;
+
+console.log(e)
 ---
 
 <Layout title={e.name}>
-    <div>This event is {e.id} {e.name} {e.start_time} {e.address}!</div>
+    <h2>
+        {e.name}
+    </h2>
+
+    <div>{e.start_time}</div>
+
+    <div>{e.address}</div>
+
+    <br/>
+
+    <div set:html={e.description}></div>
+
+    {e.repairs_available.length != 0 ?
+    <br/>
+    <h3>Repairs Available:</h3>
+    <ul>
+        {e.repairs_available.map((repair) => 
+            <li>
+                {repair}
+            </li>
+        )}
+    </ul>
+    : <></>}
+
 </Layout>
+
+<style>
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1ch;
+    }
+    li {
+        display: inline-block;
+        background-color: var(--color-yellow);
+        padding: 8px;
+        border-radius: 8px;
+        line-height: 0.8em;
+        padding-bottom: 5px;
+    }
+</style>

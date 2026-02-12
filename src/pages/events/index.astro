@@ -1,23 +1,141 @@
 ---
 import Layout from "../../components/Layout.astro";
-import { directus } from "../../lib/directus"
-import { readItems } from '@directus/sdk';
+import { directus } from "../../lib/directus";
+import { readItems } from "@directus/sdk";
+import { formatTime12Hour, formatDate } from "../../lib/format";
 
-const events = await directus.request(readItems('events'));
+const now = new Date().toISOString();
+const upcomingEvents = await directus.request(
+    readItems("events", {
+        filter: {
+            date: { _gte: now } as any,
+        },
+        sort: ["date"],
+    }),
+);
+
+const pastEvents = await directus.request(
+    readItems("events", {
+        filter: {
+            date: { _lt: now } as any,
+        },
+        sort: ["-date"],
+    }),
+);
 ---
 
 <Layout title="Events">
+    <h2>Upcoming Events</h2>
     <ol>
         {
-            events.map((e) => (
+            upcomingEvents.map((e) => (
                 <a href={`/events/${e.id}`}>
                     <li>
-                        Event {e.name}
-                        {e.start_time}
-                        {e.address}
+                        <h3>{e.name}</h3>
+
+                        <p class="meta">
+                            <span>{formatDate(e.date)}</span>
+                            <span>
+                                {formatTime12Hour(e.start_time)} -{" "}
+                                {formatTime12Hour(e.end_time)}
+                            </span>
+                            <span>{e.address}</span>
+                        </p>
+                    </li>
+                </a>
+            ))
+        }
+    </ol>
+
+    <h2>Past Events</h2>
+    <ol>
+        {
+            pastEvents.map((e) => (
+                <a href={`/events/${e.id}`} class="past">
+                    <li>
+                        <h3>{e.name}</h3>
+
+                        <p class="meta">
+                            <span>{formatDate(e.date)}</span>
+                            <span>
+                                {formatTime12Hour(e.start_time)} -{" "}
+                                {formatTime12Hour(e.end_time)}
+                            </span>
+                            <span>{e.address}</span>
+                        </p>
                     </li>
                 </a>
             ))
         }
     </ol>
 </Layout>
+
+<style>
+    h2 {
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        font-size: 1.6rem;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 0.5rem;
+    }
+
+    ol {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 1rem;
+    }
+
+    a:has(li) {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        transition:
+            transform 0.15s ease,
+            box-shadow 0.15s ease;
+    }
+
+    a:has(li) {
+        display: block;
+        padding: 1.25rem 1.5rem;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    a:has(li):hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    a:has(li) h3 {
+        margin: 0 0 0.4rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        font-size: 0.9rem;
+        color: #555;
+    }
+
+    .meta span::before {
+        content: "•";
+        margin-right: 0.5rem;
+        color: #aaa;
+    }
+
+    .meta span:first-child::before {
+        content: "";
+        margin: 0;
+    }
+
+    /* Past events look muted */
+    a:has(li).past {
+        opacity: 0.7;
+        background: #fafafa;
+    }
+</style>

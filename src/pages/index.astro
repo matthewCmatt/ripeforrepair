@@ -1,9 +1,19 @@
 ---
 import Layout from "../components/Layout.astro";
-import { directus } from "../lib/directus"
-import { readItems } from '@directus/sdk';
+import { directus } from "../lib/directus";
+import { readItems } from "@directus/sdk";
 
-const events = await directus.request(readItems('events'));
+const now = new Date().toISOString();
+
+const nextEvent = await directus.request(
+    readItems("events", {
+        filter: {
+            date: { _gte: now } as any,
+        },
+        sort: ["date"],
+        limit: 1,
+    }),
+);
 ---
 
 <Layout>
@@ -17,23 +27,17 @@ const events = await directus.request(readItems('events'));
             <section>
                 <h2>Come to the next meetup!</h2>
                 {
-                    events.map((e) => (
+                    nextEvent.map((e) => (
                         <a href={`/events/${e.id}`}>
-                            <li>
-                                {e.name}
-                            </li>
+                            <li>{e.name}</li>
                         </a>
                     ))
                 }
-                <a href="/events/">
-                    View all events
-                </a>
+                <a href="/events/"> View all events </a>
             </section>
         </div>
         <hr />
-        <a
-            href="/signup/"
-        >
+        <a href="/signup/">
             <h2>Sign up for emails!</h2>
         </a>
         <hr />
