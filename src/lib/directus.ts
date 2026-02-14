@@ -1,6 +1,6 @@
 import { createDirectus, rest } from "@directus/sdk";
 
-interface Event {
+export interface Event {
     id: number;
     name: string;
     date: Date;
