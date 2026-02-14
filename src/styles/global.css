@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'JosefinSans';
+  src: url('/fonts/JosefinSans-VariableFont_wght.ttf') format('truetype');
+  font-style: normal;
+  font-display: optional;
+}
+
 html {
     color: #04030b;
     --color-yellow: #ffde59;
@@ -7,13 +14,6 @@ html {
     --color-green: #5fbe7e;
 
   font-family: 'JosefinSans', sans-serif;
-}
-
-@font-face {
-  font-family: 'JosefinSans';
-  src: url('/fonts/JosefinSans-VariableFont_wght.ttf') format('truetype');
-  font-style: normal;
-  font-display: swap;
 }
 
 p {
