@@ -3,8 +3,10 @@ import Layout from "../../components/Layout.astro";
 import EmailSignup from "../../components/EmailSignup.svelte";
 ---
 
-<Layout title="Sign Up">
-    <h2>Sign up to receive emails!</h2>
+<Layout title="Sign Up" description="Sign up to receive emails">
+    <main>
+        <h2>Sign up to receive emails!</h2>
 
-    <EmailSignup client:idle />
+        <EmailSignup client:idle />
+    </main>
 </Layout>

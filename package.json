@@ -12,6 +12,8 @@
     "@astrojs/svelte": "^7.2.5",
     "@directus/sdk": "^21.1.0",
     "astro": "^5.16.11",
+    "datebook": "^8.0.1",
+    "file-saver": "^2.0.5",
     "svelte": "^5.50.2",
     "typescript": "^5.9.3"
   }

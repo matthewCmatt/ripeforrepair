@@ -2,6 +2,7 @@
 import Layout from "../../components/Layout.astro";
 import { directus } from "../../lib/directus"
 import { readItems } from '@directus/sdk';
+import { formatTime12Hour, formatDate } from "../../lib/format";
 
 export async function getStaticPaths() {
     const events = await directus.request(readItems('events'));
@@ -12,19 +13,38 @@ export async function getStaticPaths() {
 
 const e = Astro.props.content;
 
-console.log(e)
+import { ICalendar, type CalendarOptions, GoogleCalendar, YahooCalendar, OutlookCalendar } from 'datebook'
+
+const calendarOptions: CalendarOptions = {
+  title: e.name,
+  location: e.address,
+  description: 'Ripe for Repair meetup',
+  start: new Date(`${e.date}T${e.start_time}`),
+  end: new Date(`${e.date}T${e.end_time}`),
+}
+
+const icsFile = new ICalendar(calendarOptions).render();
+const googleCalendar = new GoogleCalendar(calendarOptions).setParam('src', 'admin@ripe4repair.org').render();
+const yahooCalendar = new YahooCalendar(calendarOptions).render();
+const outlookCalendar = new OutlookCalendar(calendarOptions).setParam('online', 'false').render();
 ---
 
-<Layout title={e.name}>
+<Layout title={e.name} description=`A Ripe for Repair meetup on ${formatDate(e.date)}`>
+    <main>
+        
     <h2>
         {e.name}
     </h2>
 
-    <div>{e.start_time}</div>
+    <p>
+        {formatDate(e.date)}
+    </p>
 
-    <div>{e.address}</div>
-
-    <br/>
+    <p>
+        {`${formatTime12Hour(e.start_time)} - ${formatTime12Hour(e.end_time)}`}
+    </p>
+    
+    <p>{e.address}</p>
 
     <div set:html={e.description}></div>
 
@@ -40,6 +60,21 @@ console.log(e)
     </ul>
     : <></>}
 
+    <br/>
+
+    <h3>Add to your calendar</h3>
+    <a href={googleCalendar} target="_blank" rel="noopener">
+    Google Calendar
+    </a>
+    <br/>
+    <a href={outlookCalendar} target="_blank" rel="noopener">
+    Outlook Web
+    </a>
+    <br/>
+    <a href={yahooCalendar} target="_blank" rel="noopener">
+    Yahoo Calendar
+    </a>
+    </main>
 </Layout>
 
 <style>
@@ -55,5 +90,8 @@ console.log(e)
         border-radius: 8px;
         line-height: 0.8em;
         padding-bottom: 5px;
+    }
+    p {
+        margin-bottom: 1em;
     }
 </style>
