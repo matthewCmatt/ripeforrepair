@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ripe4repair.org/sitemap-index.xml
