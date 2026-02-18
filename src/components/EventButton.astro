@@ -3,8 +3,8 @@
     const { event, isPast } = Astro.props;
 ---
 
-<a href={`/events/${event.id}`}>
     <li>
+<a href={`/events/${event.id}/`}>
         <h3>{event.name}</h3>
 
         <p class="meta">
@@ -15,27 +15,11 @@
             </span>
             <span>{event.address}</span>
         </p>
-    </li>
 </a>
+    </li>
 
 <style>
-    h2 {
-        margin-top: 2.5rem;
-        margin-bottom: 1rem;
-        font-size: 1.6rem;
-        border-bottom: 2px solid #eee;
-        padding-bottom: 0.5rem;
-    }
-
-    ol {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: grid;
-        gap: 1rem;
-    }
-
-    a:has(li) {
+    a {
         background: white;
         border: 1px solid #e5e7eb;
         border-radius: 10px;
@@ -44,19 +28,19 @@
             box-shadow 0.15s ease;
     }
 
-    a:has(li) {
+    a {
         display: block;
         padding: 1.25rem 1.5rem;
         text-decoration: none;
         color: inherit;
     }
 
-    a:has(li):hover {
+    a:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     }
 
-    a:has(li) h3 {
+    a h3 {
         margin: 0 0 0.4rem;
         font-size: 1.2rem;
         font-weight: 600;
@@ -82,7 +66,7 @@
     }
 
     /* Past events look muted */
-    a:has(li).past {
+    a.past {
         opacity: 0.7;
         background: #fafafa;
     }
