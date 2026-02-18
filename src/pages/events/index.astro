@@ -32,12 +32,24 @@ const pastEvents = await directus.request(
     <main>
         <h2>Upcoming Events</h2>
         <ol>
-            {upcomingEvents.map((e) => <EventButton event={e} />)}
+            {
+                upcomingEvents.map((e) => (
+                    <li>
+                        <EventButton event={e} />
+                    </li>
+                ))
+            }
         </ol>
 
         <h2>Past Events</h2>
         <ol>
-            {pastEvents.map((e) => <EventButton event={e} class="past" />)}
+            {
+                pastEvents.map((e) => (
+                    <li>
+                        <EventButton event={e} isPast={true} />
+                    </li>
+                ))
+            }
         </ol>
     </main>
 </Layout>
@@ -57,11 +69,5 @@ const pastEvents = await directus.request(
         margin: 0;
         display: grid;
         gap: 1rem;
-    }
-
-    /* Past events look muted */
-    .past {
-        opacity: 0.7;
-        background: #fafafa;
     }
 </style>

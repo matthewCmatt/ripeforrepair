@@ -1,10 +1,8 @@
 ---
-    import { formatTime12Hour, formatDate } from "../lib/format";
-    const { event, isPast } = Astro.props;
+import { formatTime12Hour, formatDate } from "../lib/format";
+const { event } = Astro.props;
 ---
-
-    <li>
-<a href={`/events/${event.id}/`}>
+    <a href={`/events/${event.id}/`}>
         <h3>{event.name}</h3>
 
         <p class="meta">
@@ -15,8 +13,7 @@
             </span>
             <span>{event.address}</span>
         </p>
-</a>
-    </li>
+    </a>
 
 <style>
     a {
@@ -63,11 +60,5 @@
     .meta span:first-child::before {
         content: "";
         margin: 0;
-    }
-
-    /* Past events look muted */
-    a.past {
-        opacity: 0.7;
-        background: #fafafa;
     }
 </style>
