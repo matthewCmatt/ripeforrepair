@@ -23,28 +23,33 @@ const nextEvent = (
 <Layout
     description=`Repair meetups in Portland, Maine, USA. The next event is ${formatDate(nextEvent.date)}`
 >
-    <main>
-        <div class="side-by-side">
-            <p>
-                A semi-regular hang to fix our broken things, learn new skills,
-                teach each other stuff, and build community across social
-                circles. Free & open to all.
-            </p>
-            <section>
-                <h2>Come to the next meetup!</h2>
-                <EventButton event={nextEvent} />
-                <a href="/events/"> View all events </a>
-            </section>
+    <section class="side-by-side">
+        <p>
+            A semi-regular hang to fix our broken things, learn new skills,
+            teach each other stuff, and build community across social circles.
+            Free & open to all.
+        </p>
+        <div class="meetup">
+            <h2>Come to the next meetup!</h2>
+            <EventButton event={nextEvent} />
+            <a href="/events/"> View all events </a>
         </div>
-        <hr />
-        <a href="/signup/">
+    </section>
+    <section>
+        <a class="email" href="/signup/">
             <h2>Sign up for emails!</h2>
         </a>
-        <hr />
+    </section>
+    <section>
         <a href="https://www.instagram.com/ripe_for_repair/">
             <h2>Instagram</h2>
         </a>
-        <hr />
+
+        <a href="https://www.facebook.com/p/Ripe-for-Repair-61556538260758/">
+            <h2>Facebook</h2>
+        </a>
+    </section>
+    <section>
         <h2>In the news</h2>
         <ul>
             <li>
@@ -62,25 +67,11 @@ const nextEvent = (
                 </a>
             </li>
         </ul>
-    </main>
+    </section>
 </Layout>
 
 <style>
-    body {
-        padding: 1em;
-        max-width: 80ch;
-        margin: auto;
-        background-color: var(--color-green);
-    }
-
-    h1 {
-        text-align: center;
-        padding: 0.5em 0;
-        font-weight: 400;
-        letter-spacing: -1px;
-    }
-
-    section {
+    .meetup {
         display: flex;
         flex-direction: column;
         gap: 1em;
@@ -99,6 +90,17 @@ const nextEvent = (
     @media (width > 700px) {
         .side-by-side {
             grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    section {
+        &:not(:last-child) {
+            padding-bottom: 2em;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        &:not(:first-child) {
+            padding-top: 1em;
         }
     }
 </style>

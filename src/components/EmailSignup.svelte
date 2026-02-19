@@ -71,11 +71,11 @@
     </label>
 
     {#if error}
-        <p class="error">{error}</p>
+        <output class="error">{error}</output>
     {/if}
 
     {#if success}
-        <p class="success">Thanks for signing up! 🎉</p>
+        <output class="success">Thanks for signing up! 🎉</output>
     {/if}
 
     <button type="submit" disabled={loading}>

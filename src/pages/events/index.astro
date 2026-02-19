@@ -29,29 +29,27 @@ const pastEvents = await directus.request(
     title="Events"
     description="All of the Ripe for Repair events, upcoming and past"
 >
-    <main>
-        <h2>Upcoming Events</h2>
-        <ol>
-            {
-                upcomingEvents.map((e) => (
-                    <li>
-                        <EventButton event={e} />
-                    </li>
-                ))
-            }
-        </ol>
+    <h2>Upcoming Events</h2>
+    <ol>
+        {
+            upcomingEvents.map((e) => (
+                <li>
+                    <EventButton event={e} />
+                </li>
+            ))
+        }
+    </ol>
 
-        <h2>Past Events</h2>
-        <ol>
-            {
-                pastEvents.map((e) => (
-                    <li>
-                        <EventButton event={e} isPast={true} />
-                    </li>
-                ))
-            }
-        </ol>
-    </main>
+    <h2>Past Events</h2>
+    <ol>
+        {
+            pastEvents.map((e) => (
+                <li>
+                    <EventButton event={e} isPast={true} />
+                </li>
+            ))
+        }
+    </ol>
 </Layout>
 
 <style>
