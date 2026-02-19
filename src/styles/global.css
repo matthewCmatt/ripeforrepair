@@ -1,9 +1,9 @@
 @font-face {
-  font-family: 'JosefinSans';
-  src: url('/fonts/JosefinSans-VariableFont_wght.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+    font-family: "JosefinSans";
+    src: url("/fonts/JosefinSans-VariableFont_wght.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 html {
@@ -14,9 +14,38 @@ html {
     --color-blue: #80aceb;
     --color-green: #5fbe7e;
 
-  font-family: 'JosefinSans', sans-serif;
+    font-family: "JosefinSans", sans-serif;
 }
 
 p {
-  max-width: 70ch;
+    max-width: 70ch;
+}
+
+.link-button {
+    --color-bg: white;
+    --color-border: lch(from var(--color-bg) calc(l - 20) c h);
+
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    display: block;
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.link-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.event {
+    --color-bg: var(--color-yellow);
+}
+
+a {
+  color: lch(20% 40 272.76);
 }

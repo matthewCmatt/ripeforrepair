@@ -23,6 +23,9 @@ const nextEvent = (
 <Layout
     description=`Repair meetups in Portland, Maine, USA. The next event is ${formatDate(nextEvent.date)}`
 >
+    <div>
+        <h2>Repair meetups in Portland, Maine</h2>
+    </div>
     <section class="side-by-side">
         <p>
             A semi-regular hang to fix our broken things, learn new skills,
@@ -30,43 +33,45 @@ const nextEvent = (
             Free & open to all.
         </p>
         <div class="meetup">
-            <h2>Come to the next meetup!</h2>
+            <h3>Come to the next meetup!</h3>
             <EventButton event={nextEvent} />
-            <a href="/events/"> View all events </a>
+            <a href="/events/" class="link-button event"> View all events </a>
         </div>
     </section>
     <section>
-        <a class="email" href="/signup/">
-            <h2>Sign up for emails!</h2>
+        <a href="/signup/" class="email link-button">
+            Sign up for emails!
         </a>
     </section>
-    <section>
-        <a href="https://www.instagram.com/ripe_for_repair/">
-            <h2>Instagram</h2>
+    <section class="link-group">
+        <a
+            href="https://www.instagram.com/ripe_for_repair/"
+            class="link-button socials"
+        >
+            Instagram
         </a>
-
-        <a href="https://www.facebook.com/p/Ripe-for-Repair-61556538260758/">
-            <h2>Facebook</h2>
+        <a
+            href="https://www.facebook.com/p/Ripe-for-Repair-61556538260758/"
+            class="link-button socials"
+        >
+            Facebook
         </a>
     </section>
-    <section>
-        <h2>In the news</h2>
-        <ul>
-            <li>
-                <a
-                    href="https://www.pressherald.com/2024/12/09/portland-repair-meetups-mend-items-knit-community/"
-                >
-                    In The Forecaster
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://wgme.com/news/local/mainers-unite-to-fix-items-and-build-skills-at-ripe-to-repair-event-in-portland"
-                >
-                    On TV (WGME)
-                </a>
-            </li>
-        </ul>
+    <section class="news">
+        <h3>In the news</h3>
+        <a
+            href="https://www.pressherald.com/2024/12/09/portland-repair-meetups-mend-items-knit-community/"
+        >
+            In The Forecaster: "Portland Repair Meetups mend items, knit
+            community"
+        </a>
+        <br/>
+        <a
+            href="https://wgme.com/news/local/mainers-unite-to-fix-items-and-build-skills-at-ripe-to-repair-event-in-portland"
+        >
+            On TV (WGME): "Mainers unite to fix items and build skills at Ripe
+            to Repair event in Portland"
+        </a>
     </section>
 </Layout>
 
@@ -96,11 +101,35 @@ const nextEvent = (
     section {
         &:not(:last-child) {
             padding-bottom: 2em;
-            border-bottom: 1px solid #ffffff;
         }
 
         &:not(:first-child) {
             padding-top: 1em;
+        }
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .link-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        gap: 1ch;
+    }
+
+    .email {
+        --color-bg: var(--color-orange);
+    }
+
+    .socials {
+        --color-bg: var(--color-mauve);
+    }
+
+    .news {
+        h3 {
+            margin-bottom: 1em;
         }
     }
 </style>
