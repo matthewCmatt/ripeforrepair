@@ -3,6 +3,7 @@ import EventButton from "../components/EventButton.astro";
 import Layout from "../components/Layout.astro";
 import { directus } from "../lib/directus";
 import { readItems } from "@directus/sdk";
+import { formatDate } from "../lib/format";
 
 const now = new Date().toISOString();
 
@@ -20,7 +21,7 @@ const nextEvent = (
 ---
 
 <Layout
-    description="Repair meetups in Portland, Maine, USA. The next event is "
+    description=`Repair meetups in Portland, Maine, USA. The next event is ${formatDate(nextEvent.date)}`
 >
     <main>
         <div class="side-by-side">
