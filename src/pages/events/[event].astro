@@ -2,12 +2,12 @@
 import Layout from "../../components/Layout.astro";
 import { directus } from "../../lib/directus"
 import { readItems } from '@directus/sdk';
-import { formatTime12Hour, formatDate } from "../../lib/format";
+import { formatTime12Hour, formatDate, slugify } from "../../lib/format";
 
 export async function getStaticPaths() {
     const events = await directus.request(readItems('events'));
     return events.map((r) => {
-        return { params: { event: r.id }, props: { content: r } };
+        return { params: { event: slugify(r.date.toLocaleString()) }, props: { content: r } };
     });
 }
 

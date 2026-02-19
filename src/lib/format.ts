@@ -32,3 +32,14 @@ export function formatDate(dateInput: Date | string, options?: Intl.DateTimeForm
 
 	return date.toLocaleDateString("en-US", defaultOptions);
 }
+
+export function slugify(str: string) {
+  return str
+    .toLowerCase()
+    .trim()
+    .normalize("NFD")                 // split accented chars
+    .replace(/[\u0300-\u036f]/g, "")  // remove accents
+    .replace(/[^a-z0-9\s-]/g, "")     // remove invalid chars
+    .replace(/\s+/g, "-")             // spaces -> hyphens
+    .replace(/-+/g, "-");             // collapse multiple hyphens
+}

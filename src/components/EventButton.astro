@@ -1,8 +1,14 @@
 ---
-import { formatTime12Hour, formatDate } from "../lib/format";
+import { formatTime12Hour, formatDate, slugify } from "../lib/format";
+
+import { type Event } from "../lib/directus"
+
+interface Props {
+    event: Event
+}
 const { event } = Astro.props;
 ---
-    <a href={`/events/${event.id}/`} class="link-button event">
+    <a href={`/events/${slugify(event.date.toLocaleString())}/`} class="link-button event">
         <h3>{event.name}</h3>
 
         <p class="meta">

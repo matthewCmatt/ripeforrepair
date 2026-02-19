@@ -45,7 +45,7 @@ const pastEvents = await directus.request(
         {
             pastEvents.map((e) => (
                 <li>
-                    <EventButton event={e} isPast={true} />
+                    <EventButton event={e} />
                 </li>
             ))
         }
