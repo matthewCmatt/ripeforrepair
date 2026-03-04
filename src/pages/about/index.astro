@@ -1,0 +1,13 @@
+---
+import Layout from "../../components/Layout.astro";
+import { directus, type About } from "../../lib/directus";
+import { readSingleton } from "@directus/sdk";
+
+const now = new Date().toISOString();
+
+const about: About = await directus.request(readSingleton("about"));
+---
+
+<Layout title="About" description=`About the Ripe for Repair organization`>
+    <div set:html={about.about_blurb} />
+</Layout>

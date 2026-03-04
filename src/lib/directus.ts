@@ -7,6 +7,7 @@ export interface About {
     page_details: string;
     resources: Resource[];
     news_coverage: NewsCoverage[];
+    about_blurb: string;
 }
 
 export interface Resource {
