@@ -1,11 +1,13 @@
 ---
 import EventButton from "../components/EventButton.astro";
 import Layout from "../components/Layout.astro";
-import { directus } from "../lib/directus";
-import { readItems } from "@directus/sdk";
+import { directus, type About, type NewsCoverage } from "../lib/directus";
+import { readItems, readSingleton } from "@directus/sdk";
 import { formatDate } from "../lib/format";
 
 const now = new Date().toISOString();
+
+const about: About = await directus.request(readSingleton("about"));
 
 const nextEvent = (
     await directus.request(
@@ -21,16 +23,14 @@ const nextEvent = (
 ---
 
 <Layout
-    description=`Repair meetups in Portland, Maine, USA. The next event is ${formatDate(nextEvent.date)}`
+    description=`${about.page_subtitle} The next event is ${formatDate(nextEvent.date)}`
 >
     <div>
-        <h2>Repair meetups in Portland, Maine</h2>
+        <h2>{about.page_subtitle}</h2>
     </div>
     <section class="side-by-side">
         <p>
-            A semi-regular hang to fix our broken things, learn new skills,
-            teach each other stuff, and build community across social circles.
-            Free & open to all.
+            {about.page_details}
         </p>
         <div class="meetup">
             <h3>Come to the next meetup!</h3>
@@ -59,19 +59,13 @@ const nextEvent = (
     </section>
     <section class="news">
         <h3>In the news</h3>
-        <a
-            href="https://www.pressherald.com/2024/12/09/portland-repair-meetups-mend-items-knit-community/"
-        >
-            In The Forecaster: "Portland Repair Meetups mend items, knit
-            community"
-        </a>
-        <br/>
-        <a
-            href="https://wgme.com/news/local/mainers-unite-to-fix-items-and-build-skills-at-ripe-to-repair-event-in-portland"
-        >
-            On TV (WGME): "Mainers unite to fix items and build skills at Ripe
-            to Repair event in Portland"
-        </a>
+        {about.news_coverage.map((n: NewsCoverage) => (
+            <a href={n.href}>
+                {n.title}
+            </a>
+            <br/>
+            <br/>
+        ))}
     </section>
 </Layout>
 

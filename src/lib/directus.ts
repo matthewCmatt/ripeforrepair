@@ -1,5 +1,18 @@
 import { createDirectus, rest } from "@directus/sdk";
 
+export interface About {
+    page_title: string;
+    page_subtitle: string;
+    hero_image: string;
+    page_details: string;
+    news_coverage: NewsCoverage[];
+}
+
+export interface NewsCoverage {
+    title: string;
+    href: string;
+}
+
 export interface Event {
     id: number;
     name: string;
@@ -19,6 +32,7 @@ interface EmailSignup {
 
 interface Schema {
     events: Event[];
+    about: About;
     email_signups: EmailSignup;
 }
 

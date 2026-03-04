@@ -7,7 +7,10 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  prefetch: true,
-  site: "https://ripe4repair.org",
-  integrations: [svelte(), sitemap()]
+    prefetch: true,
+    site: "https://ripe4repair.org",
+    integrations: [svelte(), sitemap()],
+    image: {
+        domains: ["admin.ripe4repair.org"],
+    },
 });
