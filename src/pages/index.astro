@@ -1,7 +1,7 @@
 ---
 import EventButton from "../components/EventButton.astro";
 import Layout from "../components/Layout.astro";
-import { directus, type About, type NewsCoverage } from "../lib/directus";
+import { directus, type About, type NewsCoverage, type Resource } from "../lib/directus";
 import { readItems, readSingleton } from "@directus/sdk";
 import { formatDate } from "../lib/format";
 
@@ -56,6 +56,16 @@ const nextEvent = (
         >
             Facebook
         </a>
+    </section>
+    <section class="resources">
+        <h3>Resources</h3>
+        {about.resources.map((r: Resource) => (
+            <a href={r.href}>
+                {r.title}
+            </a>
+            <br/>
+            <br/>
+        ))}
     </section>
     <section class="news">
         <h3>In the news</h3>
@@ -119,6 +129,12 @@ const nextEvent = (
 
     .socials {
         --color-bg: var(--color-mauve);
+    }
+
+    .resources {
+        h3 {
+            margin-bottom: 1em;
+        }
     }
 
     .news {

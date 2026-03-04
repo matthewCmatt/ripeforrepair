@@ -5,7 +5,13 @@ export interface About {
     page_subtitle: string;
     hero_image: string;
     page_details: string;
+    resources: Resource[];
     news_coverage: NewsCoverage[];
+}
+
+export interface Resource {
+    title: string;
+    href: string;
 }
 
 export interface NewsCoverage {
