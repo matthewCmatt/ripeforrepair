@@ -4,6 +4,8 @@ import Layout from "../components/Layout.astro";
 import { directus, type About, type NewsCoverage, type Resource } from "../lib/directus";
 import { readItems, readSingleton } from "@directus/sdk";
 import { formatDate } from "../lib/format";
+import Facebook from "../components/icons/Facebook.astro";
+import Instagram from "../components/icons/Instagram.astro";
 
 const now = new Date().toISOString();
 
@@ -48,12 +50,14 @@ const nextEvent = (
             href="https://www.instagram.com/ripe_for_repair/"
             class="link-button socials"
         >
+            <Instagram/>
             Instagram
         </a>
         <a
             href="https://www.facebook.com/p/Ripe-for-Repair-61556538260758/"
             class="link-button socials"
         >
+            <Facebook/>
             Facebook
         </a>
     </section>
@@ -121,6 +125,13 @@ const nextEvent = (
         grid-template-columns: 1fr 1fr;
         justify-content: center;
         gap: 1ch;
+
+        a {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 1ch;
+        }
     }
 
     .email {
