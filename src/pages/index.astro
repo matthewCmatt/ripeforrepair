@@ -22,10 +22,15 @@ const nextEvent = (
         }),
     )
 )[0];
+
+let description = `${about.page_subtitle}.`
+if (nextEvent) {
+    description += `The next event is ${formatDate(nextEvent.date)}`
+}
 ---
 
 <Layout
-    description=`${about.page_subtitle}. The next event is ${formatDate(nextEvent.date)}`
+    description={description}
 >
     <div>
         <h2>{about.page_subtitle}</h2>
@@ -35,8 +40,12 @@ const nextEvent = (
             {about.page_details}
         </p>
         <div class="meetup">
-            <h3>Come to the next meetup!</h3>
-            <EventButton event={nextEvent} />
+            {nextEvent ? (
+                <h3>Come to the next meetup!</h3>
+                <EventButton event={nextEvent} />
+            ) : (
+                <h3>Stay tuned for the next meetup!</h3>
+            )}
             <a href="/events/" class="link-button event"> View all events </a>
         </div>
     </section>

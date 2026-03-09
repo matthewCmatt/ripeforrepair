@@ -31,12 +31,15 @@ const pastEvents = await directus.request(
 >
     <h2>Upcoming Events</h2>
     <ol>
-        {
-            upcomingEvents.map((e) => (
+        { upcomingEvents.length != 0 ?
+            (upcomingEvents.map((e) => (
                 <li>
                     <EventButton event={e} />
                 </li>
-            ))
+            )))
+            : (
+                "We haven't posted the next event yet. Stay tuned!"
+            )
         }
     </ol>
 
