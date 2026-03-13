@@ -9,10 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.0",
-    "@astrojs/svelte": "^7.2.5",
+    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/svelte": "^8.0.0",
     "@directus/sdk": "^21.1.0",
-    "astro": "^5.16.11",
+    "astro": "^6.0.4",
     "datebook": "^8.0.1",
     "file-saver": "^2.0.5",
     "svelte": "^5.50.2",
