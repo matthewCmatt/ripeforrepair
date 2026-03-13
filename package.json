@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/compiler-rs": "^0.1.4",
     "@astrojs/sitemap": "^3.7.1",
     "@astrojs/svelte": "^8.0.0",
     "@directus/sdk": "^21.1.0",

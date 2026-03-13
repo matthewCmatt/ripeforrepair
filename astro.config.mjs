@@ -13,4 +13,10 @@ export default defineConfig({
     image: {
         domains: ["admin.ripe4repair.org"],
     },
+    experimental: {
+        rustCompiler: true,
+        queuedRendering: {
+            enabled: true,
+        },
+    },
 });
