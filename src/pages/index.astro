@@ -16,6 +16,7 @@ const nextEvent = (
         readItems("events", {
             filter: {
                 date: { _gte: now } as any,
+                type: "repair_meetup",
             },
             sort: ["date"],
             limit: 1,
