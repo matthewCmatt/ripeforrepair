@@ -46,16 +46,16 @@ const outlookCalendar = new OutlookCalendar(calendarOptions).setParam('online', 
 
     <div set:html={e.description}></div>
 
-    {e.repairs_available.length != 0 ?
+    {e.repairs_available ? <>
     <br/>
     <h3>Repairs Available:</h3>
     <ul class="repairs">
-        {e.repairs_available.map((repair) => 
+        {e.repairs_available?.map((repair) => 
             <li>
                 {repair}
             </li>
         )}
-    </ul>
+    </ul></>
     : <></>}
 <!-- 
     <br/>
