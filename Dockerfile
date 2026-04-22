@@ -12,8 +12,6 @@ COPY . .
 
 RUN pnpm run build
 
-FROM httpd:2.4 AS runtime
-
 FROM nginx:alpine AS runtime
 
 RUN rm -rf /usr/share/nginx/html/*
