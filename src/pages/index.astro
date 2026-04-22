@@ -59,22 +59,13 @@ if (nextEvent) {
             About Ripe for Repair
         </a>
     </section>
-    <section class="link-group">
-        <a
-            href="https://www.instagram.com/ripe_for_repair/"
-            class="link-button socials"
-        >
-            <Instagram/>
-            Instagram
-        </a>
-        <a
-            href="https://www.facebook.com/p/Ripe-for-Repair-61556538260758/"
-            class="link-button socials"
-        >
-            <Facebook/>
-            Facebook
-        </a>
-    </section>
+    <a
+        href="https://www.instagram.com/ripe_for_repair/"
+        class="link-button socials link"
+    >
+        <Instagram/>
+        Instagram
+    </a>
     <section class="resources">
         <h3>Resources</h3>
         {about.resources.map((r: Resource) => (
@@ -141,11 +132,14 @@ if (nextEvent) {
         gap: 1ch;
 
         a {
+        }
+    }
+
+    .link {
             display: flex;
             justify-content: start;
             align-items: center;
             gap: 1ch;
-        }
     }
 
     .email {
