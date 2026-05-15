@@ -78,7 +78,7 @@
         <output class="success">Thanks for signing up! 🎉</output>
     {/if}
 
-    <button type="submit" disabled={loading}>
+    <button type="submit" disabled={loading} data-umami-event="submit-signup">
         {loading ? "Submitting…" : "Sign Up"}
     </button>
 </form>
