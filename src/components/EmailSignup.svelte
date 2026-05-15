@@ -85,8 +85,6 @@
 
 <style>
     .signup-form {
-        max-width: 420px;
-        margin: 0 auto;
         display: flex;
         flex-direction: column;
         gap: 1rem;
