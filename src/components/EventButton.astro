@@ -1,27 +1,37 @@
 ---
 import { formatTime12Hour, formatDate, slugify } from "../lib/format";
 
-import { type Event } from "../lib/directus"
+import { type Event } from "../lib/directus";
 
 interface Props {
-    event: Event
+    event: Event;
 }
 const { event } = Astro.props;
 ---
-    <a href={`/events/${slugify(event.date.toLocaleString())}/`} class="link-button event">
-        <h3>{event.name}</h3>
 
-        <p class="meta">
-            <span>{formatDate(event.date)}</span>
-            <span>
-                {formatTime12Hour(event.start_time)} -{" "}
-                {formatTime12Hour(event.end_time)}
-            </span>
-            <span>{event.address}</span>
-        </p>
-    </a>
+<a
+    href={`/events/${slugify(event.date.toLocaleString())}/`}
+    class="link-button event"
+>
+    <h3>{event.name}</h3>
+
+    <p class="meta">
+        <span>{formatDate(event.date)}</span>
+        <span>
+            {formatTime12Hour(event.start_time)} -{" "}
+            {formatTime12Hour(event.end_time)}
+        </span>
+        <span>{event.address}</span>
+    </p>
+
+    {event.status == "cancelled" && <div class="corner-sticker">CANCELLED</div>}
+</a>
 
 <style>
+    a {
+        position: relative;
+    }
+
     a h3 {
         margin: 0 0 0.4rem;
         font-size: 1.2rem;
@@ -45,5 +55,16 @@ const { event } = Astro.props;
     .meta span:first-child::before {
         content: "";
         margin: 0;
+    }
+
+    .corner-sticker {
+        background-color: red;
+        color: white;
+        padding: 3px 8px 0px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: rotate(10deg) translate(10px, -10px);
+        text-box-trim: trim-both;
     }
 </style>
