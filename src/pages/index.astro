@@ -6,7 +6,9 @@ import { readItems, readSingleton } from "@directus/sdk";
 import { formatDate } from "../lib/format";
 import Instagram from "../components/icons/Instagram.astro";
 
-const now = new Date().toISOString();
+const now = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+}).format(new Date());
 
 const about: About = await directus.request(readSingleton("about"));
 

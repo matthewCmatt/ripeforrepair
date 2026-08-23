@@ -5,7 +5,9 @@ import { readItems } from "@directus/sdk";
 import { formatTime12Hour, formatDate } from "../../lib/format";
 import EventButton from "../../components/EventButton.astro";
 
-const now = new Date().toISOString();
+const now = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+}).format(new Date());
 const upcomingEvents = await directus.request(
     readItems("events", {
         filter: {

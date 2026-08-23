@@ -26,7 +26,8 @@ export function formatDate(dateInput: Date | string, options?: Intl.DateTimeForm
 	const defaultOptions: Intl.DateTimeFormatOptions = {
 		year: "numeric",
 		month: "short",
-		day: "numeric",
+    day: "numeric",
+    timeZone: "UTC",
 		...options,
 	};
 
