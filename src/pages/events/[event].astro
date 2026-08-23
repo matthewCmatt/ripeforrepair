@@ -30,6 +30,15 @@ const outlookCalendar = new OutlookCalendar(calendarOptions).setParam('online', 
 ---
 
 <Layout title={e.name} description=`A Ripe for Repair meetup on ${formatDate(e.date)}`>
+    {e.status == "cancelled" && <div class="cancel">
+            <h2>CANCELLED</h2>
+        {e.status_details &&
+            <p>
+                {e.status_details}
+            </p>
+        }
+    </div>}
+
     <h2>
         {e.name}
     </h2>
@@ -41,7 +50,8 @@ const outlookCalendar = new OutlookCalendar(calendarOptions).setParam('online', 
     <p>
         {`${formatTime12Hour(e.start_time)} - ${formatTime12Hour(e.end_time)}`}
     </p>
-    
+
+
     <p>{e.address}</p>
 
     <div set:html={e.description}></div>
@@ -50,14 +60,14 @@ const outlookCalendar = new OutlookCalendar(calendarOptions).setParam('online', 
     <br/>
     <h3>Repairs Available:</h3>
     <ul class="repairs">
-        {e.repairs_available?.map((repair) => 
+        {e.repairs_available?.map((repair) =>
             <li>
                 {repair}
             </li>
         )}
     </ul></>
     : <></>}
-<!-- 
+<!--
     <br/>
 
     <h3>Add to your calendar</h3>
@@ -90,5 +100,17 @@ const outlookCalendar = new OutlookCalendar(calendarOptions).setParam('online', 
     }
     p {
         margin-bottom: 1em;
+    }
+
+    .cancel {
+        background-color: red;
+        color: white;
+        margin-bottom: 2em;
+        padding: 1em;
+        text-align: center;
+
+        p {
+            margin-bottom: 0;
+        }
     }
 </style>

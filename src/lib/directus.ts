@@ -30,6 +30,7 @@ export interface Event {
     repairs_available: string[];
     description: string;
     status: "scheduled" | "cancelled" | "postponed";
+    status_details: string;
 }
 
 interface EmailSignup {
