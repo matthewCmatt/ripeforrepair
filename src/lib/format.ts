@@ -24,6 +24,7 @@ export function formatDate(dateInput: Date | string, options?: Intl.DateTimeForm
 
 	// Default options if none provided
 	const defaultOptions: Intl.DateTimeFormatOptions = {
+		weekday: "short",
 		year: "numeric",
 		month: "short",
     day: "numeric",
