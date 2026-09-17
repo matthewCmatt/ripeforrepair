@@ -9,5 +9,13 @@ const about: About = await directus.request(readSingleton("about"));
 ---
 
 <Layout title="About" description=`About the Ripe for Repair organization`>
+    <img src="/favicon.svg" />
     <div set:html={about.about_blurb} />
 </Layout>
+
+<style>
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+</style>
