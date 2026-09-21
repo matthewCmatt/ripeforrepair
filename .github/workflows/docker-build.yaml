@@ -40,3 +40,9 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Trigger Coolify deployment
+        if: success()
+        run: |
+          curl --fail --request POST \
+            "${{ secrets.COOLIFY_DEPLOY_WEBHOOK }}"
