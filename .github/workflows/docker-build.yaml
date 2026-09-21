@@ -3,8 +3,7 @@ name: Publish Docker image
 on:
   push:
     branches: [ "main" ]
-  repository_dispatch:
-    types: [directus-event]
+  workflow_dispatch:
 
 jobs:
   push_to_registry:
