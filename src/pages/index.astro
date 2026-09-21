@@ -1,7 +1,12 @@
 ---
 import EventButton from "../components/EventButton.astro";
 import Layout from "../components/Layout.astro";
-import { directus, type About, type NewsCoverage, type Resource } from "../lib/directus";
+import {
+    directus,
+    type About,
+    type NewsCoverage,
+    type Resource,
+} from "../lib/directus";
 import { readItems, readSingleton } from "@directus/sdk";
 import { formatDate } from "../lib/format";
 import Instagram from "../components/icons/Instagram.astro";
@@ -25,30 +30,31 @@ const nextEvent = (
     )
 )[0];
 
-let description = `${about.page_subtitle}.`
+let description = `${about.page_subtitle}.`;
 if (nextEvent) {
-    description += `The next event is ${formatDate(nextEvent.date)}`
+    description += `The next event is ${formatDate(nextEvent.date)}`;
 }
 ---
 
-<Layout
-    description={description}
->
+<Layout description={description}>
     <div>
         <h2>{about.page_subtitle}</h2>
     </div>
     <section class="side-by-side">
-        <p>
-            {about.page_details}
-        </p>
+        <p>{about.page_details}</p>
         <div class="meetup">
             {nextEvent ? (
-                <h3>Come to the next meetup!</h3>
-                <EventButton event={nextEvent} />
+                <>
+                    <h3>Come to the next meetup!</h3>
+                    <EventButton event={nextEvent} />
+                </>
             ) : (
                 <h3>Stay tuned for the next meetup!</h3>
             )}
-            <a href="/events/" class="link-button event"> View all events </a>
+            <a href="/events/" class="link-button event">
+                {" "}
+                View all events{" "}
+            </a>
         </div>
     </section>
     <section class="link-group">
@@ -64,27 +70,27 @@ if (nextEvent) {
         href="https://www.instagram.com/ripe_for_repair/"
         class="link-button socials link"
     >
-        <Instagram/>
+        <Instagram />
         Instagram
     </a>
     <section class="resources">
         <h3>Resources</h3>
         {about.resources.map((r: Resource) => (
-            <a href={r.href}>
-                {r.title}
-            </a>
-            <br/>
-            <br/>
+            <>
+                <a href={r.href}>{r.title}</a>
+                <br />
+                <br />
+            </>
         ))}
     </section>
     <section class="news">
         <h3>In the news</h3>
         {about.news_coverage.map((n: NewsCoverage) => (
-            <a href={n.href}>
-                {n.title}
-            </a>
-            <br/>
-            <br/>
+            <>
+                <a href={n.href}>{n.title}</a>
+                <br />
+                <br />
+            </>
         ))}
     </section>
 </Layout>
@@ -101,7 +107,7 @@ if (nextEvent) {
         display: grid;
 
         p {
-            font-size: 1.2em;
+            font-size: 1.2rem;
             margin: auto;
         }
     }
@@ -137,10 +143,10 @@ if (nextEvent) {
     }
 
     .link {
-            display: flex;
-            justify-content: start;
-            align-items: center;
-            gap: 1ch;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 1ch;
     }
 
     .email {
