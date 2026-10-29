@@ -2,7 +2,7 @@ FROM node:lts AS build
 
 WORKDIR /app
 
-RUN corepack enable
+RUN npm install -g pnpm
 
 COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml ./
 
