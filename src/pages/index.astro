@@ -10,6 +10,8 @@ import {
 import { readItems, readSingleton } from "@directus/sdk";
 import { formatDate } from "../lib/format";
 import Instagram from "../components/icons/Instagram.astro";
+import { Picture } from "astro:assets";
+import wide from "../assets/wide.jpeg"; // Image is 1600x900
 
 const now = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/New_York",
@@ -56,6 +58,13 @@ if (nextEvent) {
                 View all events{" "}
             </a>
         </div>
+    </section>
+    <section>
+        <Picture
+            src={wide}
+            alt="A sign reading 'Repair' made of recycled foam. In the background, groups of people surrounding tables covered in items."
+            style={{ "aspect-ratio": "4/3", "object-fit": "cover" }}
+        />
     </section>
     <section class="link-group">
         <a href="/signup/" class="email link-button">

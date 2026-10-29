@@ -13,6 +13,7 @@ html {
     --color-mauve: #bd8296;
     --color-blue: #80aceb;
     --color-green: #5fbe7e;
+    --color-secondary: #333;
 
     font-family: "JosefinSans", sans-serif;
     line-height: 1.5em;
@@ -49,5 +50,5 @@ p {
 }
 
 a {
-  color: lch(20% 40 272.76);
+    color: var(--color-secondary);
 }
