@@ -1,73 +1,99 @@
 ---
 import Layout from "../../components/Layout.astro";
-import { directus } from "../../lib/directus"
-import { readItems } from '@directus/sdk';
+import { directus } from "../../lib/directus";
+import { readItems } from "@directus/sdk";
 import { formatTime12Hour, formatDate, slugify } from "../../lib/format";
 
 export async function getStaticPaths() {
-    const events = await directus.request(readItems('events'));
+    const events = await directus.request(readItems("events"));
+    const repairtypes = await directus.request(readItems("repairtypes"));
+
     return events.map((r) => {
-        return { params: { event: slugify(r.date.toLocaleString()) }, props: { content: r } };
+        const filtered = repairtypes.filter((repairtype) =>
+            (r.repairs_offered ?? []).some(
+                (item) => item.key === repairtype.id,
+            ),
+        );
+
+        console.log(r.repairs_offered);
+
+        return {
+            params: { event: slugify(r.date.toLocaleString()) },
+            props: { event: r, repairtypes: filtered },
+        };
     });
 }
 
-const e = Astro.props.content;
+const e = Astro.props.event;
+const rs = Astro.props.repairtypes;
 
-import { ICalendar, type CalendarOptions, GoogleCalendar, YahooCalendar, OutlookCalendar } from 'datebook'
+import {
+    ICalendar,
+    type CalendarOptions,
+    GoogleCalendar,
+    YahooCalendar,
+    OutlookCalendar,
+} from "datebook";
 
 const calendarOptions: CalendarOptions = {
-  title: e.name,
-  location: e.address,
-  description: 'Ripe for Repair meetup',
-  start: new Date(`${e.date}T${e.start_time}`),
-  end: new Date(`${e.date}T${e.end_time}`),
-}
+    title: e.name,
+    location: e.address,
+    description: "Ripe for Repair meetup",
+    start: new Date(`${e.date}T${e.start_time}`),
+    end: new Date(`${e.date}T${e.end_time}`),
+};
 
 const icsFile = new ICalendar(calendarOptions).render();
-const googleCalendar = new GoogleCalendar(calendarOptions).setParam('src', 'admin@ripe4repair.org').render();
+const googleCalendar = new GoogleCalendar(calendarOptions)
+    .setParam("src", "admin@ripe4repair.org")
+    .render();
 const yahooCalendar = new YahooCalendar(calendarOptions).render();
-const outlookCalendar = new OutlookCalendar(calendarOptions).setParam('online', 'false').render();
+const outlookCalendar = new OutlookCalendar(calendarOptions)
+    .setParam("online", "false")
+    .render();
 ---
 
-<Layout title={e.name} description=`A Ripe for Repair meetup on ${formatDate(e.date)}`>
-    {e.status == "cancelled" && <div class="cancel">
+<Layout
+    title={e.name}
+    description=`A Ripe for Repair meetup on ${formatDate(e.date)}`
+>
+    {e.status == "cancelled" && (
+        <div class="cancel">
             <h2>CANCELLED</h2>
-        {e.status_details &&
-            <p>
-                {e.status_details}
-            </p>
-        }
-    </div>}
+            {e.status_details && <p>{e.status_details}</p>}
+        </div>
+    )}
 
-    <h2>
-        {e.name}
-    </h2>
+    <h2>{e.name}</h2>
 
-    <p>
-        {formatDate(e.date)}
-    </p>
+    <p>{formatDate(e.date)}</p>
 
     <p>
         {`${formatTime12Hour(e.start_time)} - ${formatTime12Hour(e.end_time)}`}
     </p>
 
-
     <p>{e.address}</p>
 
-    <div set:html={e.description}></div>
+    <div set:html={e.description} />
 
-    {e.repairs_available ? <>
-    <br/>
-    <h3>Repairs Available:</h3>
-    <ul class="repairs">
-        {e.repairs_available?.map((repair) =>
-            <li>
-                {repair}
-            </li>
-        )}
-    </ul></>
-    : <></>}
-<!--
+    {rs ? (
+        <>
+            <h3>Repairs Available:</h3>
+            <ul class="repairs">
+                {rs?.map((repair) => (
+                    <li>
+                        <details>
+                            <summary>{repair.name}</summary>
+                            {repair.description && <p>{repair.description}</p>}
+                        </details>
+                    </li>
+                ))}
+            </ul>
+        </>
+    ) : (
+        <></>
+    )}
+    <!--
     <br/>
 
     <h3>Add to your calendar</h3>
@@ -85,19 +111,17 @@ const outlookCalendar = new OutlookCalendar(calendarOptions).setParam('online', 
 </Layout>
 
 <style>
-    ul {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1ch;
+    summary {
+        margin-top: 16px;
+        cursor: pointer;
+        font-size: 1.2rem;
     }
-    li {
-        display: inline-block;
-        background-color: var(--color-yellow);
-        padding: 8px;
-        border-radius: 8px;
-        line-height: 0.8em;
-        padding-bottom: 5px;
+
+    details > p {
+        margin-top: 0.5em;
+        margin-left: 2ch;
     }
+
     p {
         margin-bottom: 1em;
     }
@@ -112,5 +136,9 @@ const outlookCalendar = new OutlookCalendar(calendarOptions).setParam('online', 
         p {
             margin-bottom: 0;
         }
+    }
+
+    ul {
+        margin-left: 1ch;
     }
 </style>

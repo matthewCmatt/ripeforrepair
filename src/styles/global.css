@@ -52,3 +52,7 @@ p {
 a {
     color: var(--color-secondary);
 }
+
+h3 {
+    font-size: 1.3rem;
+}
